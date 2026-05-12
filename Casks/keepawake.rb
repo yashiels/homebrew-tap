@@ -9,6 +9,10 @@ cask "keepawake" do
 
   app "KeepAwake.app"
 
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/KeepAwake.app"]
+  end
+
   zap trash: [
     "~/Library/Preferences/com.yashiels.KeepAwake.plist",
   ]
