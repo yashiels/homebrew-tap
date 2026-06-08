@@ -1,26 +1,12 @@
 class Woolies < Formula
-  desc "Woolworths Dash grocery delivery from your shell"
+  desc "CLI for Woolworths Dash grocery delivery"
   homepage "https://github.com/yashiels/woolworths-cli"
-  version "1.0.0"
-  license "MIT"
+  version "1.0.1"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies_#{version}_darwin_arm64.tar.gz"
-      sha256 "PLACEHOLDER"
-    else
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies_#{version}_darwin_amd64.tar.gz"
-      sha256 "PLACEHOLDER"
-    end
-  end
-
-  on_linux do
-    if Hardware::CPU.arm?
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies_#{version}_linux_arm64.tar.gz"
-      sha256 "PLACEHOLDER"
-    else
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies_#{version}_linux_amd64.tar.gz"
-      sha256 "PLACEHOLDER"
+      url "https://github.com/yashiels/woolworths-cli/releases/download/v1.0.1/woolies-v1.0.1-darwin-arm64.tar.gz"
+      sha256 "c172dd054519fde9aa914c951b39d147f2eb6890dc8ceafc89d876d1f0b05e82"
     end
   end
 
@@ -29,6 +15,6 @@ class Woolies < Formula
   end
 
   test do
-    system bin/"woolies", "--help"
+    system bin/"woolies", "--version"
   end
 end
