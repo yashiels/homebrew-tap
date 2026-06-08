@@ -1,26 +1,12 @@
 class Takealot < Formula
-  desc "Search, cart, and checkout on Takealot without a browser"
+  desc "CLI for Takealot.com"
   homepage "https://github.com/yashiels/takealot-cli"
-  version "0.1.0"
-  license "MIT"
+  version "0.1.1"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot_#{version}_darwin_arm64.tar.gz"
-      sha256 "PLACEHOLDER"
-    else
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot_#{version}_darwin_amd64.tar.gz"
-      sha256 "PLACEHOLDER"
-    end
-  end
-
-  on_linux do
-    if Hardware::CPU.arm?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot_#{version}_linux_arm64.tar.gz"
-      sha256 "PLACEHOLDER"
-    else
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot_#{version}_linux_amd64.tar.gz"
-      sha256 "PLACEHOLDER"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.1.1/takealot-v0.1.1-darwin-arm64.tar.gz"
+      sha256 "f2161911f7f8d9119e86b6c090a24c20ef8204ac39d1b9aaf2678f897a16574d"
     end
   end
 
@@ -29,6 +15,6 @@ class Takealot < Formula
   end
 
   test do
-    system bin/"takealot", "--help"
+    system bin/"takealot", "--version"
   end
 end
