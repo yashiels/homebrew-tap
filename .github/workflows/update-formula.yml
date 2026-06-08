@@ -1,0 +1,106 @@
+name: Update Formula
+run-name: Update ${{ inputs.formula }} for ${{ inputs.tag }}${{ inputs.request_id && format(' ({0})', inputs.request_id) || '' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      formula:
+        description: "Formula name (e.g., lnk)"
+        required: true
+        type: string
+      tag:
+        description: "Release tag to update formula for"
+        required: true
+        type: string
+      repository:
+        description: "Source repository (e.g., yashiels/linkedin-cli)"
+        required: true
+        type: string
+      description:
+        description: "Formula description used when creating a missing formula"
+        required: false
+        type: string
+      macos_artifact:
+        description: "macOS artifact name"
+        required: false
+        type: string
+      linux_url:
+        description: "Linux archive URL"
+        required: false
+        type: string
+      artifact_template:
+        description: "Multi-arch asset template, e.g. {formula}_{version}_{target}.tar.gz"
+        required: false
+        type: string
+      artifact_url:
+        description: "Direct artifact/source URL template"
+        required: false
+        type: string
+      target_aliases:
+        description: "Comma-separated canonical=artifact-target aliases"
+        required: false
+        type: string
+      cask:
+        description: "Optional cask name to update"
+        required: false
+        type: string
+      cask_artifact:
+        description: "Release asset name for the optional cask"
+        required: false
+        type: string
+      request_id:
+        description: "Unique caller-generated ID"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  update-formula:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout tap repository
+        uses: actions/checkout@v6
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update formula
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          args=(
+            --formula "${{ inputs.formula }}"
+            --tag "${{ inputs.tag }}"
+            --repository "${{ inputs.repository }}"
+          )
+          if [ -n "${{ inputs.description }}" ]; then args+=(--description "${{ inputs.description }}"); fi
+          if [ -n "${{ inputs.macos_artifact }}" ]; then args+=(--macos-artifact "${{ inputs.macos_artifact }}"); fi
+          if [ -n "${{ inputs.linux_url }}" ]; then args+=(--linux-url "${{ inputs.linux_url }}"); fi
+          if [ -n "${{ inputs.artifact_template }}" ]; then args+=(--artifact-template "${{ inputs.artifact_template }}"); fi
+          if [ -n "${{ inputs.artifact_url }}" ]; then args+=(--artifact-url "${{ inputs.artifact_url }}"); fi
+          if [ -n "${{ inputs.target_aliases }}" ]; then args+=(--target-aliases "${{ inputs.target_aliases }}"); fi
+          if [ -n "${{ inputs.cask }}" ]; then args+=(--cask "${{ inputs.cask }}"); fi
+          if [ -n "${{ inputs.cask_artifact }}" ]; then args+=(--cask-artifact "${{ inputs.cask_artifact }}"); fi
+          python3 .github/scripts/update_formula.py "${args[@]}"
+
+      - name: Commit and push
+        run: |
+          FORMULA="${{ inputs.formula }}"
+          TAG="${{ inputs.tag }}"
+          CASK="${{ inputs.cask }}"
+          git add "Formula/${FORMULA}.rb"
+          if [ -n "$CASK" ]; then git add "Casks/${CASK}.rb"; fi
+          if git diff --cached --quiet; then
+            echo "Formula/${FORMULA}.rb already up to date"
+            exit 0
+          fi
+          if [ -n "$CASK" ]; then
+            git commit -m "${FORMULA}: update formula and cask for ${TAG}"
+          else
+            git commit -m "${FORMULA}: update formula for ${TAG}"
+          fi
+          git push
