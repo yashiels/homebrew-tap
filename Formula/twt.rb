@@ -1,26 +1,26 @@
 class Twt < Formula
   desc "X/Twitter from the terminal — built on the private GraphQL API"
   homepage "https://github.com/yashiels/twitter-cli"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/twitter-cli/releases/download/v#{version}/twitter-cli_#{version}_darwin_arm64.tar.gz"
-      sha256 "62ecf2f9e5d82896ef56616c63c03beae69e6a8a2c0bfe7f331a8a8af3f40e93"
+      sha256 "673a01d0550bdf6fd04ab02a54da88c371cb021d40b8b1f82d6ecad0831d1106"
     else
       url "https://github.com/yashiels/twitter-cli/releases/download/v#{version}/twitter-cli_#{version}_darwin_amd64.tar.gz"
-      sha256 "ebdd07069842c49b65244f38dfc1926ec57203b723cc73b82eaf6c248a0fd214"
+      sha256 "fb9be3f5234ae2ab379333bbe4edbb7176110319f87231b81c6b24a968ce760b"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/twitter-cli/releases/download/v#{version}/twitter-cli_#{version}_linux_arm64.tar.gz"
-      sha256 "f2826095d54d872a2cde78f503c1f804e0c570ef4d51133c57aafff87449b90b"
+      sha256 "ca514bf512a8e3980c4c698612c85963d577f7f73e5622ca9e7044e6b330a2c9"
     else
       url "https://github.com/yashiels/twitter-cli/releases/download/v#{version}/twitter-cli_#{version}_linux_amd64.tar.gz"
-      sha256 "fb291ded3ee6d114a3110637efa0367613635732b303cea928eee62ff8e3fdd7"
+      sha256 "9a79617aa63d64a9eec82deeb12b33dfaa10901aafe1760ca6b8dcf6d961bf35"
     end
   end
 
