@@ -18,6 +18,7 @@ brew tap yashiels/tap
 | `woolies` | Woolworths Dash grocery delivery from your shell |
 | `orro` | Control your Tuya standing desk from the terminal |
 | `lnk` | LinkedIn CLI — search jobs, view profiles, apply from the terminal |
+| `twt` | X/Twitter from the terminal |
 
 | Cask | Description |
 |------|-------------|
