@@ -7,7 +7,9 @@ class Orro < Formula
   sha256 "56f7ff82004fb235a98e3e7186dcc0a03f15f563f54b02cf22add6d117cbcdad"
   license "MIT"
 
+  depends_on "openssl@3"
   depends_on "python@3.12"
+  depends_on "rust" => :build
 
   resource "tinytuya" do
     url "https://files.pythonhosted.org/packages/24/aa/02f8cc8aa4f53acbb53e51c841bb49bcf945bdac69f19aa65564de26a800/tinytuya-1.18.0.tar.gz"
