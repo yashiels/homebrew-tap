@@ -103,4 +103,8 @@ jobs:
           else
             git commit -m "${FORMULA}: update formula for ${TAG}"
           fi
-          git push
+          for attempt in 1 2 3; do
+            git push && break
+            echo "Push failed (attempt $attempt/3), pulling with rebase..."
+            git pull --rebase
+          done
