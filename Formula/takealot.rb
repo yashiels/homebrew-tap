@@ -1,20 +1,20 @@
 class Takealot < Formula
   desc "CLI for Takealot.com"
   homepage "https://github.com/yashiels/takealot-cli"
-  version "0.1.1"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot-v#{version}-darwin-arm64.tar.gz"
-      sha256 "f2161911f7f8d9119e86b6c090a24c20ef8204ac39d1b9aaf2678f897a16574d"
+      sha256 "a788838d68808ab50a2cc97c9647b343bdf7af962c1d49b56687dae61cd20b7c"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot-v#{version}-linux-x64.tar.gz"
-      sha256 "f56b86cd20542cddc7a7152bbbce1caca674e429591e3e26dbef6356ade9d3ea"
+      sha256 "57d22f1e9b92082bf7f845391adc06f93c9c5e4e263379325a3f59c06407a8a7"
     end
   end
 
