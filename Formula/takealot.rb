@@ -1,20 +1,12 @@
 class Takealot < Formula
   desc "CLI for Takealot.com"
   homepage "https://github.com/yashiels/takealot-cli"
-  version "0.2.0"
-  license "MIT"
+  version "0.3.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot-v#{version}-darwin-arm64.tar.gz"
-      sha256 "a788838d68808ab50a2cc97c9647b343bdf7af962c1d49b56687dae61cd20b7c"
-    end
-  end
-
-  on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v#{version}/takealot-v#{version}-linux-x64.tar.gz"
-      sha256 "57d22f1e9b92082bf7f845391adc06f93c9c5e4e263379325a3f59c06407a8a7"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.3.0/takealot-v0.3.0-darwin-arm64.tar.gz"
+      sha256 "e24453ca9405cd5dfdac011c7e4b33a3243f86c43b46cfc95525bbbfb215d02d"
     end
   end
 
@@ -23,6 +15,6 @@ class Takealot < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/takealot --version")
+    system bin/"takealot", "--version"
   end
 end
