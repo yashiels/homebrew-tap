@@ -1,20 +1,12 @@
 class Woolies < Formula
   desc "CLI for Woolworths Dash grocery delivery"
   homepage "https://github.com/yashiels/woolworths-cli"
-  version "1.0.2"
-  license "MIT"
+  version "1.1.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies-v#{version}-darwin-arm64.tar.gz"
-      sha256 "abe224f0356ea462b9451ac15c012968308ba5adb10e84679339fe69adad2b02"
-    end
-  end
-
-  on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/yashiels/woolworths-cli/releases/download/v#{version}/woolies-v#{version}-linux-x64.tar.gz"
-      sha256 "6ae93683e622bdcc0db2e75027aa83c19065c3292a57b8e4f841c604683eb040"
+      url "https://github.com/yashiels/woolworths-cli/releases/download/v1.1.0/woolies-v1.1.0-darwin-arm64.tar.gz"
+      sha256 "b074de8f2236b9acebe7b004b1de481344d2f0ea525d551e4105c5a7df5b0e17"
     end
   end
 
@@ -23,6 +15,6 @@ class Woolies < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/woolies --version")
+    system bin/"woolies", "--version"
   end
 end
