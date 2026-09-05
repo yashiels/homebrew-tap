@@ -63,11 +63,6 @@ jobs:
       - name: Checkout tap repository
         uses: actions/checkout@v6
 
-      - name: Setup Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
       - name: Update formula
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,24 +82,52 @@ jobs:
           if [ -n "${{ inputs.cask_artifact }}" ]; then args+=(--cask-artifact "${{ inputs.cask_artifact }}"); fi
           python3 .github/scripts/update_formula.py "${args[@]}"
 
-      - name: Commit and push
+      - name: Commit formula via signed API
+        env:
+          GH_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
         run: |
+          set -euo pipefail
           FORMULA="${{ inputs.formula }}"
           TAG="${{ inputs.tag }}"
           CASK="${{ inputs.cask }}"
-          git add "Formula/${FORMULA}.rb"
-          if [ -n "$CASK" ]; then git add "Casks/${CASK}.rb"; fi
-          if git diff --cached --quiet; then
+          REPO="${{ github.repository }}"
+          BRANCH="${GITHUB_REF_NAME}"
+
+          paths=("Formula/${FORMULA}.rb")
+          [ -n "$CASK" ] && paths+=("Casks/${CASK}.rb")
+
+          additions='[]'
+          changed=0
+          for p in "${paths[@]}"; do
+            if [ -f "$p" ] && [ -n "$(git status --porcelain -- "$p")" ]; then
+              changed=1
+              c=$(base64 < "$p" | tr -d '\n')
+              additions=$(jq -n --argjson a "$additions" --arg p "$p" --arg c "$c" '$a + [{path: $p, contents: $c}]')
+            fi
+          done
+          if [ "$changed" -eq 0 ]; then
             echo "Formula/${FORMULA}.rb already up to date"
             exit 0
           fi
-          if [ -n "$CASK" ]; then
-            git commit -m "${FORMULA}: update formula and cask for ${TAG}"
-          else
-            git commit -m "${FORMULA}: update formula for ${TAG}"
-          fi
-          for attempt in 1 2 3; do
-            git push && break
-            echo "Push failed (attempt $attempt/3), pulling with rebase..."
-            git pull --rebase
+
+          msg="${FORMULA}: update formula for ${TAG}"
+          [ -n "$CASK" ] && msg="${FORMULA}: update formula and cask for ${TAG}"
+
+          for attempt in 1 2 3 4 5; do
+            oid=$(gh api "repos/${REPO}/git/ref/heads/${BRANCH}" --jq '.object.sha')
+            payload=$(jq -n \
+              --arg repo "$REPO" --arg branch "$BRANCH" --arg oid "$oid" \
+              --arg headline "$msg" --argjson additions "$additions" \
+              '{query: "mutation($input: CreateCommitOnBranchInput!) { createCommitOnBranch(input: $input) { commit { oid url } } }",
+                variables: {input: {branch: {repositoryNameWithOwner: $repo, branchName: $branch}, expectedHeadOid: $oid, message: {headline: $headline}, fileChanges: {additions: $additions}}}}')
+            if out=$(printf '%s' "$payload" | gh api graphql --input - 2>&1); then
+              url=$(printf '%s' "$out" | jq -r '.data.createCommitOnBranch.commit.url // empty')
+              if [ -n "$url" ]; then echo "Committed (verified): $url"; exit 0; fi
+              echo "attempt $attempt: no commit in response: $out"
+            else
+              echo "attempt $attempt failed: $out"
+            fi
+            sleep $((attempt * 2))
           done
+          echo "Failed to create signed commit after retries" >&2
+          exit 1
