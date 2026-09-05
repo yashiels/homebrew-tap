@@ -1,6 +1,6 @@
 cask "keepawake" do
-  version "0.3.1"
-  sha256 "25155e8fa220facb1ef762082172a03bcddd4b0660e1784490099b72e0ae9e4f"
+  version "0.3.2"
+  sha256 "135c0c17cb1ce50e9674fba1178d9009aec51a5c18f05ae06c75ed79806687d0"
 
   url "https://github.com/yashiels/keep-awake/releases/download/v#{version}/KeepAwake-v#{version}.dmg"
   name "KeepAwake"
