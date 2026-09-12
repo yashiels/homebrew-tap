@@ -19,6 +19,7 @@ brew tap yashiels/tap
 | `orro` | Control your Tuya standing desk from the terminal |
 | `lnk` | LinkedIn CLI — search jobs, view profiles, apply from the terminal |
 | `twt` | X/Twitter from the terminal |
+| `hfd` | Order lunch from Home Food Deli from the terminal |
 
 | Cask | Description |
 |------|-------------|
