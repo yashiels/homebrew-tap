@@ -23,7 +23,6 @@ brew tap yashiels/tap
 
 | Cask | Description |
 |------|-------------|
-| `keepawake` | Menu bar app to prevent Jamf-managed macOS screen lock |
 
 ## Install
 
