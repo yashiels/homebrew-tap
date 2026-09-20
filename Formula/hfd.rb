@@ -1,26 +1,26 @@
 class Hfd < Formula
   desc "Order lunch from Home Food Depo"
   homepage "https://github.com/yashiels/home-food-depo-cli"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/home-food-depo-cli/releases/download/v#{version}/home-food-depo-cli_#{version}_darwin_arm64.tar.gz"
-      sha256 "071e4a4030920dc3f81d224df95c096bee9a7ad7fcb8d8e5793e874d29976536"
+      sha256 "3ff5276500f11906bc7373a9c8bd693386481ad3a33177e4ecfffeeeb789a695"
     else
       url "https://github.com/yashiels/home-food-depo-cli/releases/download/v#{version}/home-food-depo-cli_#{version}_darwin_amd64.tar.gz"
-      sha256 "894f6ad90189b6e98af561623157427ceb9824ea6f08b6073bce97efb2de66ad"
+      sha256 "f4de43612e873bcfb3b852f37461be4e4a82224a676ee6995d14700f5ada2d0e"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/home-food-depo-cli/releases/download/v#{version}/home-food-depo-cli_#{version}_linux_arm64.tar.gz"
-      sha256 "3be348bf0579e3e725dcb51c6347adab267e119c611b65dad92cb56fecf094c7"
+      sha256 "f4a31b11ae7a9f45010a0f4273f1bd5639f2c3fa621c53aefe51e14ed3bdb31f"
     else
       url "https://github.com/yashiels/home-food-depo-cli/releases/download/v#{version}/home-food-depo-cli_#{version}_linux_amd64.tar.gz"
-      sha256 "f2a7aa7322a35e102243faf8bc294b36ef10837ae3bc819fc234d6239bda00a5"
+      sha256 "2e2e6bd91d39d35527b50c5103a93c17fbc58cc3e6069509db6d8356331d5f44"
     end
   end
 
