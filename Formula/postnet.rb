@@ -1,25 +1,25 @@
 class Postnet < Formula
   desc "Track PostNet parcels from the command line"
   homepage "https://github.com/yashiels/postnet-cli"
-  version "1.0.3"
+  version "1.0.4"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.3/postnet-v1.0.3-darwin-arm64.tar.gz"
-      sha256 "ac3cf6da46b633553ce561c74c5a3113ab00d140ffd5d0b3edbd181628c47f1e"
+      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.4/postnet-v1.0.4-darwin-arm64.tar.gz"
+      sha256 "c6453432f1c9a08c8afc2ddedcbc7c761c8df8ea456690677c4776428074a002"
     else
-      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.3/postnet-v1.0.3-darwin-amd64.tar.gz"
-      sha256 "9696ee9b100b61c08a6981bbc1ff465f97ccb4f91f7a904b07f1f29771f66900"
+      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.4/postnet-v1.0.4-darwin-amd64.tar.gz"
+      sha256 "cf04039d0725d971fec2638d4e51e6c104f7c09e69d78d2e1280acd178cd533b"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.3/postnet-v1.0.3-linux-arm64.tar.gz"
-      sha256 "de05c567e71f0634a9395a15e9a046c31302df9b638a8c464b27ed794ff78b21"
+      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.4/postnet-v1.0.4-linux-arm64.tar.gz"
+      sha256 "fd954f4ff81f3e4376fcc97d5d726cdd94cc61330f233bf8eaa6b33b0f5eb035"
     else
-      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.3/postnet-v1.0.3-linux-amd64.tar.gz"
-      sha256 "3c93389e08a78b4bd77108df9deb7f5305f8032f38e90e0cf88bf2b7af319e23"
+      url "https://github.com/yashiels/postnet-cli/releases/download/v1.0.4/postnet-v1.0.4-linux-amd64.tar.gz"
+      sha256 "04c4aeb00e40ae6b041c9396232467565ef736bdcbb87ecea8ab2ad67cfacf32"
     end
   end
 
