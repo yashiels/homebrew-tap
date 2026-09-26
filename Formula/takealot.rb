@@ -1,25 +1,25 @@
 class Takealot < Formula
   desc "CLI for Takealot.com"
   homepage "https://github.com/yashiels/takealot-cli"
-  version "0.7.0"
+  version "0.7.1"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.0/takealot-v0.7.0-darwin-arm64.tar.gz"
-      sha256 "1a4fea4a743569c4133851c469809858ff7f127f92fb6f298b05ddce5fa2d9dd"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.1/takealot-v0.7.1-darwin-arm64.tar.gz"
+      sha256 "ee215e4f38c7a1eaea2ce4071b86e4508e02e53be78832dc2592699d33a0a5d6"
     else
-      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.0/takealot-v0.7.0-darwin-amd64.tar.gz"
-      sha256 "1e9e584fc67cfc2b28280293c3a40dd0dbadc4b0c97f88a61e9ace4c7218a91f"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.1/takealot-v0.7.1-darwin-amd64.tar.gz"
+      sha256 "999b7e1023587c60163aa6d42c552482708f7525324955d4663467d0beeee961"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.0/takealot-v0.7.0-linux-arm64.tar.gz"
-      sha256 "c06c194aa330f04c416ab07c414821e66d00bb6b079759fd8a4c32ef7e82f8f0"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.1/takealot-v0.7.1-linux-arm64.tar.gz"
+      sha256 "bc24b6f3ec94b519e486a20ca13e3c088a497e1a87f76cc7a03a2484bcedc2dd"
     else
-      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.0/takealot-v0.7.0-linux-amd64.tar.gz"
-      sha256 "e1a7a3d981a4d48a192472ca466a6b58ee77f29966cbe8ccc7ecbd0877d81723"
+      url "https://github.com/yashiels/takealot-cli/releases/download/v0.7.1/takealot-v0.7.1-linux-amd64.tar.gz"
+      sha256 "3a8ce9651f989ebf352d0157196b21b892f2256163674c690fbdcc4e002c9f97"
     end
   end
 
