@@ -1,26 +1,26 @@
 class Lnk < Formula
   desc "LinkedIn CLI — search jobs, view profiles, apply from the terminal"
   homepage "https://github.com/yashiels/linkedin-cli"
-  version "0.1.1"
+  version "0.1.2"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/linkedin-cli/releases/download/v#{version}/lnk_#{version}_darwin_arm64.tar.gz"
-      sha256 "cc4a2d0624d8ce9c71c8cf919de5b6f3d828a2be50208671a6669ca6bbe08b81"
+      sha256 "ebd7751c1a94f96ca6fcb33142ec3fe568cfa91a59d12345e4f7a0ab3f0e8aee"
     else
       url "https://github.com/yashiels/linkedin-cli/releases/download/v#{version}/lnk_#{version}_darwin_amd64.tar.gz"
-      sha256 "7039ffc33f51949f6727c407c9a39410a8efd94cb550e3b9586ce56087278385"
+      sha256 "f8e10831352b25b671378f623b1d1f58a279c073185ae6b4ed783666f2725b7c"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/linkedin-cli/releases/download/v#{version}/lnk_#{version}_linux_arm64.tar.gz"
-      sha256 "c05237fe113a0f345074adaffce02f89fcbcd8b35f6e32ba0da9f14f86b8fe2b"
+      sha256 "e7fc9430a38f7be6a968650fb43f6cac6f107c8b5fcd7f73ecc1060d0620f49a"
     else
       url "https://github.com/yashiels/linkedin-cli/releases/download/v#{version}/lnk_#{version}_linux_amd64.tar.gz"
-      sha256 "4a13e6e4c10faadb6b3344811ab192ca4ed7e4d95af431309ed36bbf0c842d63"
+      sha256 "714e19a52f0e12f5d3613dd662e7fef336d32fce7325d612084e760b11172592"
     end
   end
 
