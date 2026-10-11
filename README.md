@@ -20,6 +20,8 @@ brew tap yashiels/tap
 | `lnk` | LinkedIn CLI — search jobs, view profiles, apply from the terminal |
 | `twt` | X/Twitter from the terminal |
 | `hfd` | Order lunch from Home Food Deli from the terminal |
+| `imsgcrawl` | Local-first iMessage archive for agents (upstream: openclaw/imsgcrawl) |
+| `photoscrawl` | Local-first Apple Photos archive and search (upstream: openclaw/photoscrawl) |
 
 | Cask | Description |
 |------|-------------|
