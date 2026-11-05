@@ -1,26 +1,26 @@
 class Reddit < Formula
   desc "Reddit from the terminal, authenticating as the official Android app"
   homepage "https://github.com/yashiels/reddit-cli"
-  version "0.3.0"
+  version "0.4.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/reddit-cli/releases/download/v#{version}/reddit-cli_#{version}_darwin_arm64.tar.gz"
-      sha256 "b37d40fbd85d6a0078222c6ed46106f7683adff609aa940a2f5ea300ff55f644"
+      sha256 "cdaefb2ab4d34e64e1d315033658b62229f4ab63345c5b4b56f5b7210814f7b0"
     else
       url "https://github.com/yashiels/reddit-cli/releases/download/v#{version}/reddit-cli_#{version}_darwin_amd64.tar.gz"
-      sha256 "c12d4af1acba2269e7beab15969fbfef0e13b4480bbbb8d234ff1aa537f03010"
+      sha256 "cabe8703ec0382399f54c72e0ba3e03492fbafb3ef88c26983b45627abdf6b62"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/yashiels/reddit-cli/releases/download/v#{version}/reddit-cli_#{version}_linux_arm64.tar.gz"
-      sha256 "46c74756d2e799b4d58472318b859d2adeb8ba378ecbebdac081345493250cdf"
+      sha256 "45163ff87c5320bd3ffdc5909971912eca91abdd035e139f216ab3cfd538909e"
     else
       url "https://github.com/yashiels/reddit-cli/releases/download/v#{version}/reddit-cli_#{version}_linux_amd64.tar.gz"
-      sha256 "c64239c22aab9761a663f0c06c6ed69ab954f79236c2f749305ee411c3d01587"
+      sha256 "03e09280442a17da50ba2aa69520b5f160ad97996a8f0452f2dbed965355c492"
     end
   end
 
